@@ -1,8 +1,8 @@
 > 很多码友在处理Java后端接口API上，对于安全认证却是一种很头疼的事
 
-### 开源地址 
+### 博客地址 
 
-> https://github.com/hiparker/interface-api-auth
+> https://www.arcinbj.com/archives/interfaceapi
 
 ### 为什么要授权认证
 1.防止未授权的用户，非法获得不该他所能看到的数据
