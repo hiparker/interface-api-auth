@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>接口模拟页面</title>
+    <style>
+        html,body{
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
+        div{
+            width: 500px;
+            margin: 0 auto;
+        }
+        a{
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <hr>
+    <div style="color: coral">生产者</div>
+    <div>
+        <br>
+        <form id="cnfDataForm" style="padding-left:20px;text-align:center;" target="_blank">
+            用户登录名：<input type="text" name="userLoginName" id="userLoginName">
+            <br>
+            用户密码：<input type="text" name="userPassword" id="userPassword">
+            <br>
+
+        </form>
+        <br>
+        <a href="javascript:void(0)" onclick="cnfDataForm()" >生成cnf数据</a>
+        <a href="javascript:void(0)" onclick="getToken()" >获得Token数据</a>
+        <a href="javascript:void(0)" onclick="validateToken()" >验证结果</a>
+        <br>
+        cnf数据：<input type="text" id="cnfData" style="width: 100%">
+        token数据：<input type="text" id="toKenData" style="width: 100%">
+        验证结果：<input type="text" id="validateToken" style="width: 100%">
+    </div>
+
+    <hr>
+    <div style="color: coral">消费者</div>
+    <div>
+        生成cnf文件
+        <br>
+        <form action="/interface/do/createCNF" method="post"
+              style="padding-left:20px;text-align:center;" target="_blank">
+            用户登录名：<input type="text" name="userLoginName">
+            <br>
+            用户密码：<input type="text" name="userPassword" >
+            <br>
+            <button>生成cnf文件</button>
+        </form>
+        <br><br><br><br><br>
+
+        <a href="javascript:void(0)" onclick="example()" >模拟API调用</a>
+        <br>
+        API返回结果：<input type="text" id="apiResult" style="width: 100%">
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    <!-- 生产者 -->
+    <script>
+        // 获得cnf数据
+        function cnfDataForm() {
+            let form = $("#cnfDataForm");
+            let cnfInput = $("#cnfData");
+            console.log(JSON.stringify({
+                userLoginName:form.find("#userLoginName").val(),
+                userPassword:form.find("#userPassword").val()
+            }));
+
+            $.ajax({
+                contentType:'application/json;charset=UTF-8',
+                url:'/interface/do/createCNFByDate',
+                method:"post",
+                data:JSON.stringify({
+                    userLoginName:form.find("#userLoginName").val(),
+                    userPassword:form.find("#userPassword").val()
+                }),
+                success:function(data){
+                    console.log(data);
+                    if(data.success){
+                        var temp = data.cnf;
+                        cnfInput.val(temp);
+                    }else{
+                        alert(data.msg);
+                    }
+                }
+            });
+        }
+
+        // 获得Token数据
+        function getToken() {
+            let toKenData = $("#toKenData");
+            let cnfInput = $("#cnfData");
+            $.ajax({
+                contentType:'application/json;charset=UTF-8',
+                url:"/interface/do/getToken",
+                method:"post",
+                data: JSON.stringify({
+                    cnf:cnfInput.val()
+                }),
+                success:function(data){
+                    console.log(data);
+                    if(data.success){
+                        var temp = data.token;
+                        toKenData.val(temp);
+                    }else{
+                        alert(data.msg);
+                    }
+                }
+            });
+        }
+
+        // 验证Token数据
+        function validateToken() {
+            let toKenData = $("#toKenData");
+            let validateToken = $("#validateToken");
+            $.ajax({
+                contentType:'application/json;charset=UTF-8',
+                url:"/interface/do/validateToken",
+                method:"post",
+                data:JSON.stringify({
+                    token:toKenData.val()
+                }),
+                success:function(data){
+                    console.log(data);
+                    validateToken.val(data.msg);
+                }
+            });
+        }
+    </script>
+    <!-- 消费者 -->
+    <script>
+        // 验证Token数据
+        function example() {
+            let apiResult = $("#apiResult");
+            $.ajax({
+                contentType:'application/json;charset=UTF-8',
+                url:"/consumer/example",
+                method:"post",
+                success:function(data){
+                    console.log(data);
+                    apiResult.val(JSON.stringify(data));
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+server:
+  port: 8000
+  tomcat:
+    uri-encoding: UTF-8
+    basedir: /Users/liugf
+    max-threads: 2000
+    min-spare-threads: 10
+    accesslog:
+      pattern: common
+      enabled: true
+      directory: logs
+      prefix: arcinbj_access_log
+      suffix: .log
+      request-attributes-enabled: true
+      rename-on-rotate: true
+logging:
+  level:
+    root: INFO
+    #    org.flowable: DEBUG
+    com.easyexcel: DEBUG
+spring:
+  servlet:
+    multipart:
+      maxFileSize:  1000MB
+      maxRequestSize: 1000MB
+  devtools:
+    restart:
+      enabled: true
+  # THYMELEAF
+  thymeleaf:
+    encoding: UTF-8
+    # 热部署静态文件
+    cache: true
+    # 使用HTML5标准
+    mode: HTML5
+  #redis 配置
+  redis:
+    database: 0
+    host: 127.0.0.1
+    lettuce:
+      pool:
+        max-active: 8   #最大连接数据库连接数,设 0 为没有限制
+        max-idle: 8     #最大等待连接中的数量,设 0 为没有限制
+        max-wait: -1ms  #最大建立连接等待时间。如果超过此时间将接到异常。设为-1表示无限制。
+        min-idle: 0     #最小等待连接中的数量,设 0 为没有限制
+      shutdown-timeout: 100ms
+    password: '123456'
+    port: 6333
+
+#============================#
+#===== System settings ======#
+#============================#
+
+#产品信息设置
+copyrightYear: 2020
+version: springboot2.0
