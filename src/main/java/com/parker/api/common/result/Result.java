@@ -1,6 +1,3 @@
-/**
- * Copyright &copy; 2015-2020 <a href="http://www.jeeplus.org/">JeePlus</a> All rights reserved.
- */
 package com.parker.api.common.result;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
