@@ -169,7 +169,7 @@ public final class ApiUtils {
         return result.toString();
     }
 
-    /**
+    /** 
      * 把中文转成Unicode码
      *
      * @param str
