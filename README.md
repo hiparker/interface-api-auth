@@ -2,7 +2,7 @@
 
 ### 博客地址 
 
-> https://www.arcinbj.com/archives/interfaceapi
+> https://www.bedebug.com/archives/interfaceapi
 
 ### 为什么要授权认证
 1.防止未授权的用户，非法获得不该他所能看到的数据
@@ -10,12 +10,12 @@
 3.防止接口大批量灌水，如果提前设置好Token失效时间，即使拿到了认证密文也只是短时间内起效（况且密文能不能解析还是一回事）
 
 ### 逻辑思维导图
-![Java后端接口API认证授权](https://www.arcinbj.com/upload/2020/05/Java后端接口API认证授权-b8959a14ff3e4250899556de412a1b80.jpg)
+![Java后端接口API认证授权](https://www.bedebug.com/upload/2020/05/Java后端接口API认证授权-b8959a14ff3e4250899556de412a1b80.jpg)
 
 ### 接口认证效果
-![接口1](https://www.arcinbj.com/upload/2020/05/接口1-bc4f23122de8497bb09b6ad30c70ad58.jpg)
+![接口1](https://www.bedebug.com/upload/2020/05/接口1-bc4f23122de8497bb09b6ad30c70ad58.jpg)
 
-![接口2](https://www.arcinbj.com/upload/2020/05/接口2-43f0e0d629d54491a6bf76e3a64f01c0.jpg)
+![接口2](https://www.bedebug.com/upload/2020/05/接口2-43f0e0d629d54491a6bf76e3a64f01c0.jpg)
 
 ++如果后端 通过认证文件调用API接口，则每次都会去取Token，即使Token失效也会重新生成++
 
